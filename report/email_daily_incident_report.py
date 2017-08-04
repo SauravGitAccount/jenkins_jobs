@@ -41,4 +41,4 @@ if __name__ == "__main__":
     username = os.environ['smtp_username']
     password = os.environ['smtp_password']
     
-    sendEmail(smtp_sender,smtp_reciever)
+    sendEmail(smtp_reciever,smtp_sender)
