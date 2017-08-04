@@ -1,0 +1,5 @@
+import os
+
+#TEST FOR THE JENKINS ENVIORNMENT VARIABLE SETTING FUNCTIONALITY
+a = os.environ['AOEU']
+print a
