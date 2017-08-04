@@ -35,7 +35,7 @@ def get_incidents(api_key, since, until=date.today()):
     }
     r = requests.get(url, headers=headers, params=payload)
     incidents = r.json()['incidents']
-    csvfile = open('/tmp/pgdt_report.csv', 'w')
+    csvfile = open('pgdt_report.csv', 'w')
     fieldnames = ['id',
                   'incident_number',
                   'description',
