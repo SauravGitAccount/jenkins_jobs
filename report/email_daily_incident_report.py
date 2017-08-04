@@ -24,7 +24,7 @@ def sendEmail(TO ,
     part.add_header('Content-Disposition', 'attachment; filename="%s"' % os.path.basename(filePath))
     msg.attach(part)
 
-    server = smtplib.SMTP_SSL(HOST)
+    server = smtplib.SMTP_SSL(smtp_host)
     server.login(username, password)  # optional
 
     try:
@@ -35,4 +35,10 @@ def sendEmail(TO ,
 
 if __name__ == "__main__":
     filePath = '/pgdt_report.csv'
-    sendEmail(TO,FROM)
+    smtp_host = os.environ['SMTP_HOST']
+    smtp_sender = os.environ['SENDER_EMAIL_ADDRESS']
+    smtp_reciever = os.environ['RECIEVER_EMAIL_ADDRESS'] 
+    username = os.environ['smtp_username']
+    password = os.environ['smtp_password']
+    
+    sendEmail(smtp_sender,smtp_reciever)
