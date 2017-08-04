@@ -34,7 +34,7 @@ def sendEmail(TO ,
         errorMsg = "Unable to send email. Error: %s" % str(e)
 
 if __name__ == "__main__":
-    filePath = 'pgdt_report.csv'
+    filePath = 'report.csv'
     smtp_host = os.environ['SMTP_HOST']
     smtp_sender = os.environ['SENDER_EMAIL_ADDRESS']
     smtp_reciever = os.environ['RECIEVER_EMAIL_ADDRESS'] 
