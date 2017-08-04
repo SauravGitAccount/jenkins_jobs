@@ -72,10 +72,11 @@ def get_incidents(api_key, since, until=date.today()):
 if __name__ == '__main__':
     
     since = date.today() - timedelta(days=1)
-    config = ConfigParser.ConfigParser()
-    config.read("report.conf")
-    api_key = config.get('config', 'api_key')
-    url = config.get('config', 'url')
+   # config = ConfigParser.ConfigParser()
+   # config.read("report.conf")
+   # api_key = config.get('config', 'api_key')
+   # url = config.get('config', 'url')
+    url=os.environ['URL']
     get_incidents(api_key,since)
 
 
