@@ -1,18 +1,25 @@
 #!/usr/bin/env python
 
 import requests
+import sys
+import json
 import csv
 import datetime
 from datetime import date
 from datetime import timedelta
 import os
+import smtplib
+import ConfigParser
+from ConfigParser import SafeConfigParser
+from email import Encoders
+from email.MIMEBase import MIMEBase
+from email.MIMEMultipart import MIMEMultipart
+from email.Utils import formatdate
 
-url = 'https://api.pagerduty.com/incidents'
-yesterday = date.today() - timedelta(days=1)
 
 
 
-def get_incidents(api_key, since=yesterday, until=date.today()):
+def get_incidents(api_key, since, until=date.today()):
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
         'Authorization': 'Token token=' + api_key
@@ -28,8 +35,6 @@ def get_incidents(api_key, since=yesterday, until=date.today()):
     }
     r = requests.get(url, headers=headers, params=payload)
     incidents = r.json()['incidents']
-
-
     csvfile = open('/tmp/pgdt_report.csv', 'w')
     fieldnames = ['id',
                   'incident_number',
@@ -43,11 +48,9 @@ def get_incidents(api_key, since=yesterday, until=date.today()):
                   'last_status_change_at',
                   'urgency'
                   ]
-    
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
     for i in incidents:
-        
         row = {
             'id': i['id'],
             'incident_number': i['incident_number'],
@@ -60,9 +63,22 @@ def get_incidents(api_key, since=yesterday, until=date.today()):
             'current_status': i['status'],
             'last_status_change_at': i['last_status_change_at'],
             'urgency': i['urgency']
+
         }
         writer.writerow(row)
     csvfile.close()
 
+
 if __name__ == '__main__':
-    get_incidents(api_key=os.environ['API_KEY'])
+    
+    since = date.today() - timedelta(days=1)
+    config = ConfigParser.ConfigParser()
+    config.read("report.conf")
+    api_key = config.get('config', 'api_key')
+    url = config.get('config', 'url')
+    get_incidents(api_key,since)
+
+
+
+
+
