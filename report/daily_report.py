@@ -77,6 +77,7 @@ if __name__ == '__main__':
    # api_key = config.get('config', 'api_key')
    # url = config.get('config', 'url')
     url = 'https://api.pagerduty.com/incidents'
+    api_key=os.environ['api_key']
     get_incidents(api_key,since)
 
 
