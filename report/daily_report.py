@@ -144,9 +144,10 @@ if __name__ == '__main__':
    #SINCE = os.environ['since']
    #UNTIL = os.environ['until']
    if datetime.datetime.today().weekday() != 3:   
-      get_daily_report()
-   else:
       get_weekly_report()
+   else:
+      get_daily_report()
+     
        
 
 
