@@ -37,8 +37,8 @@ from datetime import (date,timedelta)
 # Update to match your API key
 
 # Update to match your chosen parameters
-SINCE = date.today() - timedelta(days=7)
-UNTIL = date.today()
+#SINCE = date.today() - timedelta(days=7)
+#UNTIL = date.today()
 #DATE_RANGE = 'all'
 #STATUSES = []
 #INCIDENT_KEY = ''
