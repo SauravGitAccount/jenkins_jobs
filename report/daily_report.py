@@ -50,7 +50,7 @@ from datetime import (date,timedelta)
 #SORT_BY = []
 #INCLUDE = []
 
-def list_incidents(SINCE,UNTIL):
+def list_incidents(SINCE,UNTIL,limit=100):
     url = 'https://api.pagerduty.com/incidents'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
@@ -59,6 +59,7 @@ def list_incidents(SINCE,UNTIL):
     payload = {
         'since': SINCE,
         'until': UNTIL,
+        'limit': limit
         #'date_range': DATE_RANGE,
         #'statuses[]': STATUSES,
         #'incident_key': INCIDENT_KEY,
@@ -144,7 +145,7 @@ if __name__ == '__main__':
    #SINCE = os.environ['since']
    #UNTIL = os.environ['until']
    #if datetime.datetime.today().weekday() != 3:   
-      get_weekly_report()
+   get_weekly_report()
    #else:
     #  get_daily_report()
      
