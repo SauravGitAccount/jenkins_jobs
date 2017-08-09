@@ -14,7 +14,7 @@ def sendEmail(TO ,
     msg = MIMEMultipart()
     msg["From"] = FROM
     msg["To"] = TO
-    msg["Subject"] = "SAMPLE WEEKLY INCIDENT REPORT"
+    msg["Subject"] = "WEEKLY INCIDENT REPORT"
     msg['Date']    = formatdate(localtime=True)
 
     # attach a file
